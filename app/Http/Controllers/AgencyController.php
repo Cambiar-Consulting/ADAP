@@ -39,7 +39,7 @@ class AgencyController extends Controller
 
         Agency::create([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
         ]);
 
         return redirect()->route('agency.index')->with('success', 'Agency created successfully.');
@@ -74,7 +74,7 @@ class AgencyController extends Controller
 
         $agency->update([
             'name' => $request->name,
-            'email' => $request->email
+            'email' => $request->email,
         ]);
 
         return redirect()->route('agency.index')->with('success', 'Agency updated successfully.');

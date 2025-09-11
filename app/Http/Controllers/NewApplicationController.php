@@ -291,7 +291,7 @@ class NewApplicationController extends Controller
             'alternateContacts',
             'households',
             'files',
-            'medicares'
+            'medicares',
         ]);
         $statusHistories = ApplicationStatusHistory::with('application_status', 'assigned_to', 'created_by', 'updated_by')
             ->where('application_id', $newApplication->id)
@@ -311,10 +311,11 @@ class NewApplicationController extends Controller
         return view('newapplication.review', compact('genders', 'races', 'ethnicities', 'languages', 'maritalStatuses', 'livingArrangements', 'newApplication', 'medicares', 'currentStatus', 'availableStatuses', 'statusHistories'));
     }
 
-    public function savereview(ReviewRequest $request) {
+    public function savereview(ReviewRequest $request)
+    {
         $newApplication = NewApplication::findOrFail($request->application_id);
         $assignToUser = ApplicationStatusHistory::getAssignedUserForApplication($newApplication->id, $newApplication->application_type_id);
-        
+
         $status = ApplicationStatusHistory::create([
             'application_id' => $newApplication->id,
             'application_type_id' => $newApplication->application_type_id,
@@ -322,7 +323,7 @@ class NewApplicationController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'notes' => $request->notes,
-            'assigned_to_user_id' => $assignToUser->id
+            'assigned_to_user_id' => $assignToUser->id,
         ]);
 
         NewApplicationStatusChanged::dispatch();

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Lookups\ApplicationStatusesLookup;
-use App\Models\Views\Application;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

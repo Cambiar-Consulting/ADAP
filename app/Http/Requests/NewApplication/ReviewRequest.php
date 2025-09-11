@@ -23,7 +23,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'application_id' => 'required',
-            'application_status_id' => 'required'
+            'application_status_id' => 'required',
         ];
     }
 }

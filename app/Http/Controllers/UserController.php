@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
-use App\Models\Agency;
 
 class UserController extends Controller
 {
@@ -47,7 +47,7 @@ class UserController extends Controller
             'alias' => $request->alias,
             'date_of_birth' => $request->date_of_birth,
             'ssn' => $request->ssn,
-            'agency_id' => $request->agency_id
+            'agency_id' => $request->agency_id,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
@@ -89,7 +89,7 @@ class UserController extends Controller
             'alias' => $request->alias,
             'date_of_birth' => $request->date_of_birth,
             'ssn' => $request->ssn,
-            'agency_id' => $request->agency_id
+            'agency_id' => $request->agency_id,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
@@ -111,6 +111,7 @@ class UserController extends Controller
     {
         $agencies = Agency::all()->pluck('name', 'id');
         $agencies->prepend('Select an Agency', '');
+
         return view('users.register', compact('agencies'));
     }
 
@@ -125,7 +126,7 @@ class UserController extends Controller
             'alias' => $request->alias,
             'date_of_birth' => $request->date_of_birth,
             'ssn' => $request->ssn,
-            'agency_id' => $request->agency_id
+            'agency_id' => $request->agency_id,
         ]);
 
         return redirect()->route('home')->with('success', 'User registered successfully.');

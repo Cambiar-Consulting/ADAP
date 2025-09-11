@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
         /*

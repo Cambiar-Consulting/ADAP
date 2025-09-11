@@ -7,10 +7,10 @@ use App\Models\ApplicationFile;
 use App\Models\File;
 use App\Models\FileType;
 use App\Models\NewApplication;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
@@ -28,7 +28,6 @@ class FileController extends Controller
     public function store(FileRequest $request)
     {
         $newApplication = NewApplication::findOrFail($request->application_id);
-
 
         $path = $request->file->store('files');
 
@@ -83,7 +82,7 @@ class FileController extends Controller
     {
         $applicantId = Auth::user()->getApplicantId();
         $applicant = User::findOrFail($applicantId);
-        $filename = $applicant->first_name . '_' . $applicant->last_name . '_' . Carbon::now()->format("Y_m_d_H_i_s");
-        $filename = preg_replace("/\s+/", "", $filename);
+        $filename = $applicant->first_name.'_'.$applicant->last_name.'_'.Carbon::now()->format('Y_m_d_H_i_s');
+        $filename = preg_replace("/\s+/", '', $filename);
     }
 }

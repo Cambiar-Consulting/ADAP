@@ -16,7 +16,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
-
 /**
  * App\Models\User
  *
@@ -192,7 +191,7 @@ class User extends Authenticatable
     // region Assisting Functions
     public function getApplicantId()
     {
-        if (Auth::user() != null && Auth::user()->isApplicant()) {
+        if ($this->isApplicant()) {
             return Auth::user()->id;
         }
 

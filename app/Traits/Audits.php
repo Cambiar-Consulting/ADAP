@@ -3,8 +3,8 @@
 namespace App\Traits;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Auth;
 
 trait Audits
 {

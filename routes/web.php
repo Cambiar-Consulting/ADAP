@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -101,4 +99,4 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 });
 
-//Auth::routes();
+// Auth::routes();

@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'email',
-            'date_of_birth' => 'required|date'
+            'date_of_birth' => 'required|date',
         ];
     }
 }

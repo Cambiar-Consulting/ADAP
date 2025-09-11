@@ -12,8 +12,7 @@ class AgencyPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -25,8 +24,7 @@ class AgencyPolicy
      */
     public function view(User $user, Agency $agency): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -38,8 +36,7 @@ class AgencyPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -51,8 +48,7 @@ class AgencyPolicy
      */
     public function update(User $user, Agency $agency): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -64,8 +60,7 @@ class AgencyPolicy
      */
     public function delete(User $user, Agency $agency): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -77,8 +72,7 @@ class AgencyPolicy
      */
     public function restore(User $user, Agency $agency): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
 
@@ -90,11 +84,10 @@ class AgencyPolicy
      */
     public function forceDelete(User $user, Agency $agency): bool
     {
-        if ($user->isAssisting())
-        {
+        if ($user->isAssisting()) {
             return false;
         }
-        
+
         return $user->isAdmin() || $user->isSuperUser();
     }
 }
