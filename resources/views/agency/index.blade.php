@@ -6,12 +6,12 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Users</li>
+                <li class="breadcrumb-item active" aria-current="page">Agencies</li>
             </ol>
         </nav>
-        <h2>Users</h2>
-        <a class="btn btn-success my-3" href="{{ route('users.create') }}">Add User</a>
-        <table id="usersTable" class="table table-striped table-bordered">
+        <h2>Agencies</h2>
+        <a class="btn btn-success my-3" href="{{ route('agency.create') }}">Add Agency</a>
+        <table id="agenciesTable" class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -21,11 +21,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($users as $user)
+            @foreach($agencies as $agency)
             <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
+                <td>{{ $agency->id }}</td>
+                <td>{{ $agency->name }}</td>
+                <td>{{ $agency->email }}</td>
                 <td>
                     <a href="{{ route('agency.show', $agency->id) }}" class="btn btn-info">View</a>
                     <a href="{{ route('agency.edit', $agency->id) }}" class="btn btn-warning">Edit</a>
@@ -46,7 +46,7 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#usersTable').DataTable();
+        $('#agenciesTable').DataTable();
     });
 </script>
 @endsection

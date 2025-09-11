@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\AlternateContactController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DebugController;
@@ -84,6 +85,9 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('users/{id}', 'UserController@show')->name('users.show');
     // Route::get('users/{id}/edit', 'UserController@edit')->name('users.edit');
     // Route::match(['put', 'patch', 'post'], 'users/{user}', 'UserController@update')->name('users.update');
+
+    // Agency
+    Route::resource('agency', AgencyController::class);
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

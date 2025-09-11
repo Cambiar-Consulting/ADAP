@@ -6,14 +6,14 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+                    <li class="breadcrumb-item"><a href="{{ route('agency.index') }}">Agencies</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Agency</li>
                 </ol>
             </nav>
-            <h2>Edit User</h2>
+            <h2>Edit Agency</h2>
             <div class="card">
-                {{ html()->modelForm($user, 'PUT', route('users.update', $user->id))->open() }}
-                @include('users._form')
+                {{ html()->modelForm($agency, 'PUT', route('agency.update', $agency))->open() }}
+                @include('agency._form')
 
                 <div class="card-footer">
                     <div class="row">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -13,7 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        Gate::authorize('viewAny', User::class);
+
+        $users = User::all();
+
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -21,15 +26,31 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        Gate::authorize('create', User::class);
+
+        return view('user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        Gate::authorize('create', User::class);
+
+        User::create([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'alias' => $request->alias,
+            'date_of_birth' => $request->date_of_birth,
+            'ssn' => $request->ssn,
+            'agency_id' => $request->agency_id
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -37,7 +58,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        Gate::authorize('view', $user);
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -54,12 +77,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         Gate::authorize('update', $user);
-        $user->update($request->all());
+        $user->update([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'alias' => $request->alias,
+            'date_of_birth' => $request->date_of_birth,
+            'ssn' => $request->ssn,
+            'agency_id' => $request->agency_id
+        ]);
 
-        return back()->with('success', 'User profile updated.');
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 
     /**
@@ -67,6 +100,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        Gate::authorize('delete', $user);
+
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }

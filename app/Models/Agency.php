@@ -36,4 +36,8 @@ use Illuminate\Database\Eloquent\Model;
 class Agency extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id', 'created_at', 'updated_at', 'deleted_at', 'created_by_id', 'updated_by_id', 'deleted_by_id'
+    ];
 }

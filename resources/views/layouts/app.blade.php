@@ -21,8 +21,23 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div class="navbar-collapse collapse d-sm-inline-flex">
                     {{-- <partial name="_LoginPartial" />  --}}
+                    <ul class="navbar-nav">
+                        <li class="nav-link">
+                            <a class="nav-link text-dark" href="{{ route('home') }}">Home</a>
+                        </li>
+                        @can('viewAny', App\Models\Agency::class)
+                            <li class="nav-link">
+                                <a class="nav-link text-dark" href="{{ route('agency.index') }}">Agencies</a>
+                            </li>
+                        @endcan
+                        @can('viewAny', App\Models\User::class)
+                            <li class="nav-link">
+                                <a class="nav-link text-dark" href="{{ route('users.index') }}">Users</a>
+                            </li>
+                        @endcan
+                    </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             @guest
