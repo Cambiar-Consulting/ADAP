@@ -110,6 +110,7 @@ class UserController extends Controller
     public function showRegistrationForm()
     {
         $agencies = Agency::all()->pluck('name', 'id');
+        $agencies->prepend('Select an Agency', '');
         return view('users.register', compact('agencies'));
     }
 
