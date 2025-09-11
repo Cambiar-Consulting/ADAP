@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Agency;
 
 class UserController extends Controller
 {
@@ -105,5 +105,28 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+    }
+
+    public function showRegistrationForm()
+    {
+        $agencies = Agency::all()->pluck('name', 'id');
+        return view('users.register', compact('agencies'));
+    }
+
+    public function register(UserRequest $request)
+    {
+        User::create([
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+            'alias' => $request->alias,
+            'date_of_birth' => $request->date_of_birth,
+            'ssn' => $request->ssn,
+            'agency_id' => $request->agency_id
+        ]);
+
+        return redirect()->route('home')->with('success', 'User registered successfully.');
     }
 }
