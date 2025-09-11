@@ -5,7 +5,7 @@
     <ul class="list-group list-group-flush">
         @foreach ($statusHistories as $status)
             <li class="list-group-item">
-                {{ $status->application_status->name }} - At: {{ $status->created_date() }} - By: {{ $status->created_by ? $status->created_by->full_name : '' }}<br />
+                {{ $status->application_status->name }} - At: {{ $status->created_date() }} - By: {{ $status->created_by ? $status->created_by->fullName() : '' }}<br />
                 Start Date: {{ $status->start_date() }} to End Date: {{ $status->end_date() }}<br />
                 Notes: {{ $status->notes }}
             </li>

@@ -60,6 +60,8 @@ class UserController extends Controller
     {
         Gate::authorize('view', $user);
 
+        $user->load('agency');
+
         return view('users.show', compact('user'));
     }
 
