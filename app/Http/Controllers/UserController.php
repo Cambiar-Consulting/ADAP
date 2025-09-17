@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\Agency;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -132,5 +133,14 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('home')->with('success', 'User registered successfully.');
+    }
+
+    public function assist(User $user)
+    {
+        Gate::authorize('assist', $user);
+
+        Auth::user()->setAssisting($user->id);
+
+        return redirect()->route('home')->with('success', 'You are now impersonating ' . $user->full_name() . '.');
     }
 }

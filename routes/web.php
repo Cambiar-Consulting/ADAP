@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('file/download/{file}', [FileController::class, 'download'])->name('file.download');
 
     // Users
+    Route::get('users/assist/{user}', [UserController::class, 'assist'])->name('users.assist');
     Route::get('users/register', [UserController::class, 'showRegistrationForm'])->name('users.showRegistrationForm');
     Route::post('users/register', [UserController::class, 'register'])->name('users.register');
     Route::resource('users', UserController::class);

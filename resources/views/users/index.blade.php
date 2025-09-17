@@ -29,6 +29,9 @@
                 <td>
                     <a href="{{ route('users.show', $user->id) }}" class="btn btn-info">View</a>
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                    @can('assist', $user)
+                        <a href="{{ route('users.assist', $user->id) }}" class="btn btn-info">Assist</a>
+                    @endcan
                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')

@@ -112,4 +112,32 @@ class UserPolicy
 
         return $user->isAdmin() || $user->isSuperUser();
     }
+
+    public function assist(User $user, User $model): bool
+    {
+        if (!$model->isApplicant())
+        {
+            return false;
+        }
+        if ($user->isAssisting()) {
+            return false;
+        }
+
+        // cannot assist self
+        if ($user->id === $model->id) {
+            return false;
+        }
+
+        // cannot assist system account
+        if ($model->id == UsersLookup::SYSTEMACCOUNT) {
+            return false;
+        }
+
+        // Case managers can only assist users in their agency
+        if ($user->isCaseManager() && $user->agency_id !== $model->agency_id) {
+            return false;
+        }
+
+        return $user->isAdmin() || $user->isSuperUser() || $user->isReviewer();
+    }
 }
