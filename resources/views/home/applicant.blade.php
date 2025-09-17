@@ -57,7 +57,7 @@
             <tbody>
                 @foreach ($submittedNewApplications as $app)
                     <tr>
-                        <td>{{ $app->applicant->fullName() }}</td>
+                        <td>{{ $app->applicant->full_name() }}</td>
                         <td>New Application</td>
                         <td>{{ $app->application_status }}</td>
                         <td data-sort="">{{ $app->createdDate }}</td>

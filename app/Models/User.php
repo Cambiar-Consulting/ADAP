@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string|null $email
  * @property string|null $phone_number
  * @property string|null $alias
- * @property string|null $date_of_birth
+ * @property \Illuminate\Support\Carbon|null  $date_of_birth
  * @property string|null $ssn
  * @property int|null $agency_id
  * @property int|null $legal_representative_id
@@ -124,7 +124,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function fullName()
+    public function full_name()
     {
         if ($this->middle_name)
         {
@@ -132,6 +132,16 @@ class User extends Authenticatable
         }
         
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function date_of_birth()
+    {
+        if ($this->date_of_birth)
+        {
+            return $this->date_of_birth->format('m/d/Y');
+        }
+
+        return '';
     }
 
     // region Relationships
@@ -149,6 +159,11 @@ class User extends Authenticatable
     public function mergedApplication(): HasOne
     {
         return $this->hasOne(MergedApplication::class, 'applicant_id', 'id');
+    }
+
+    public function agency(): HasOne
+    {
+        return $this->hasOne(Agency::class, 'id', 'agency_id');
     }
 
     // endregion

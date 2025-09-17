@@ -15,7 +15,7 @@ class DebugController extends Controller
         $user = User::findOrFail($request->user_id);
         Auth::login($user);
 
-        return redirect()->route('home')->with('success', 'Successfully logged in as '.$user->fullName());
+        return redirect()->route('home')->with('success', 'Successfully logged in as '.$user->full_name());
     }
 
     public function loginAs()

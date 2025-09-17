@@ -13,7 +13,7 @@
         <h2>Create User</h2>
         <div class="card">
             {{ html()->form('POST', route('users.store'))->open() }}
-                @include('users._form');
+                @include('users._form')
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-md-3">

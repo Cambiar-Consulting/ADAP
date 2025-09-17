@@ -18,7 +18,7 @@ class UserController extends Controller
 
         $users = User::all();
 
-        return view('user.index', compact('users'));
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
     {
         Gate::authorize('create', User::class);
 
-        return view('user.create');
+        return view('users.create');
     }
 
     /**

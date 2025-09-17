@@ -1,7 +1,7 @@
 <div class="card-body">
     <div class="form-group">
         {{ html()->label('Username')->for('username') }}
-        @can('updateUsername', $user)
+        @can('updateUsername', \Auth::user())
             {{ html()->text('username')->class('form-control')  }}
         @else
             {{ html()->text('username')->class('form-control')->disabled()  }}
@@ -31,8 +31,10 @@
     <div class="form-group">
         {{ html()->bootSSN(name: 'ssn', labelName: 'Social Security Number', required: false) }}
     </div>
-    <div class="form-group">
-        {{ html()->label('Is Stub Record')->for('is_stub') }}
-        {{ html()->text('is_stub')->value($user->is_stub ? 'Yes' : 'No')->class('form-control')->disabled() }}
-    </div>
+    @if(isset($user))
+        <div class="form-group">
+            {{ html()->label('Is Stub Record')->for('is_stub') }}
+            {{ html()->text('is_stub')->value($user->is_stub ? 'Yes' : 'No')->class('form-control')->disabled() }}
+        </div>
+    @endif
 </div>
